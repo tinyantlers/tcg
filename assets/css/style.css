@@ -337,7 +337,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: calc(100vh - 72px);
-  background: url("../../images/tcg.png") center center;
+  background: url("../../images/bg.jpg") center center;
   background-size: cover;
   position: relative;
   margin-top: 72px;
@@ -425,7 +425,7 @@ section {
 }
 
 .section-bg {
-  background-color: #f2f9f8;
+  background-color: #ced6e02f;
 }
 
 .section-title {
