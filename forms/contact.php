@@ -6,10 +6,9 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-echo $_POST['email'];
-
 // Instantiation and passing `true` enables exceptions
 $mail = new PHPMailer();
+$header = '<b>Customer Name:</b> '.$_POST['name'].'<br><b>Email: </b>'.$_POST['email'].'<br><br>';
 
 try {
     //Server settings
@@ -24,16 +23,16 @@ try {
 
     //Recipients
     $mail->setFrom('tileandcarpetgallery@gmail.com', 'Tile and Carpet Gallery');
-    $mail->addAddress('mayafluis@gmail.com', 'Luis Maya');     // Add a recipient
+    $mail->addAddress($_POST['email'], $_POST['name']);         // Add a recipient
 
     // Content
-    $mail->isHTML(true);                                       // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->isHTML(true);                                        // Set email format to HTML
+    $mail->Subject = $_POST['subject'];
+    $mail->Body    = $header.$_POST['message'];
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'OK';
+    exit();
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
